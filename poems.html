@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Poems — Love, in Photos and Verse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Poems dynamically loaded from text files and presented as elegant reading cards.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <h1 class="site-title">Poetry collection</h1>
+      <p class="site-tagline">Words for the one I love</p>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="photos.html">Photos</a>
+      <a href="poems.html" aria-current="page">Poems</a>
+    </nav>
+  </header>
+
+  <main id="main" class="content-narrow">
+    <section>
+      <h2 class="section-title">Poems</h2>
+      <div class="card-container" id="poems-container">
+        <!-- Cards will be injected here via script.js -->
+      </div>
+      <div id="poems-status" class="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

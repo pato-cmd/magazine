@@ -1,0 +1,451 @@
+/* Base: Typography, layout, colors */
+:root {
+  --bg: #f7f7f6;
+  --text: #232323;
+  --muted: #6b6b6b;
+  --primary: #3a5ad9;
+  --primary-contrast: #ffffff;
+  --accent: #d98c3a;
+  --card-bg: #ffffff;
+  --border: #e7e7e7;
+  --shadow-sm: 0 6px 18px rgba(0,0,0,0.06);
+  --shadow-md: 0 12px 24px rgba(0,0,0,0.10);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+/* Header and navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffffcc 70%, transparent 100%);
+  backdrop-filter: saturate(1.1) blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .brand {
+  padding: 1.25rem 1rem 0.5rem;
+}
+
+.site-title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+}
+
+.site-tagline {
+  margin: 0.25rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--border);
+}
+.site-nav a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.site-nav a[aria-current="page"] {
+  background: #efefef;
+}
+.site-nav a:hover {
+  background: #ececec;
+}
+
+/* Hero section */
+.hero {
+  padding: 2.5rem 1rem 1rem;
+}
+.hero-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin: 0 0 0.5rem;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 720px;
+  margin: 0 auto 1.25rem;
+}
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+.btn {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-contrast);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-secondary {
+  background: #ececf8;
+  color: #1c1c1f;
+}
+
+/* Sections */
+.section-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  padding: 1.25rem 1rem 0.5rem;
+  margin: 0;
+}
+
+/* Content width helper */
+.content-narrow {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Card grid */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  padding: 1rem;
+}
+
+/* Generic card */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.card-content {
+  padding: 1rem 1rem 1.2rem;
+}
+.card-content h3, .card-content h4 {
+  margin: 0 0 0.4rem;
+  font-family: "Playfair Display", Georgia, serif;
+}
+.card-content p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Feature section only */
+.featured .card-container {
+  display: flex;
+  justify-content: center;   /* Center the two cards */
+  gap: 2rem;                 /* Space between them */
+  flex-wrap: wrap;           /* Allow stacking on small screens */
+  padding: 2rem 1rem;
+}
+
+.featured .card-feature {
+  flex: 1 1 300px;           /* Flexible width, min 300px */
+  max-width: 400px;          /* Prevent cards from stretching too wide */
+  text-align: center;        /* Center text inside */
+}
+
+/* Photo card */
+.card-photo .card-media {
+  display: block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+.card-photo img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Poem card: improve readability */
+.card-poem .card-content {
+  padding: 1.1rem;
+}
+.poem-title {
+  margin-bottom: 0.5rem;
+}
+.poem-body {
+  white-space: pre-line;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* Status messages */
+.status {
+  padding: 0.75rem 1rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Lightbox modal */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 12, 0.82);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+}
+.lightbox[aria-hidden="false"] { display: flex; }
+
+.lightbox-content {
+  max-width: min(86vw, 1200px);
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+
+.lightbox-caption {
+  margin-top: 0.6rem;
+  color: #e7e7e7;
+  text-align: center;
+  max-width: 80ch;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+/* Footer */
+.site-footer {
+  padding: 1.25rem 1rem 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Small screens */
+@media (max-width: 520px) {
+  .site-nav { flex-wrap: wrap; }
+  .card-photo img { height: 160px; }
+}
+.site-header .brand {
+  padding: 1.25rem 1rem 0.5rem;
+  text-align: center;   /* Center the titles */
+}
+
+.site-title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+  text-align: center;   /* Ensure the title itself is centered */
+}
+
+.site-tagline {
+  margin: 0.25rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-align: center;   /* Center the tagline */
+}
+.site-header .brand {
+  padding: 1.25rem 1rem 0.5rem;
+  text-align: center;   /* Center the titles */
+}
+
+.site-title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+  text-align: center;   /* Center the title itself */
+}
+
+.site-tagline {
+  margin: 0.25rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-align: center;   /* Center the tagline */
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;   /* Center the nav links */
+  gap: 1rem;
+  padding: 0.75rem 0 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.site-nav a[aria-current="page"] {
+  background: #efefef;
+}
+
+.site-nav a:hover {
+  background: #ececec;
+}
+body {
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 50%, #fad0c4 100%);
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Optional: subtle overlay of glowing particles */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.2) 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 0%, transparent 40%),
+              radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  animation: shimmer 12s infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes shimmer {
+  from { opacity: 0.4; }
+  to   { opacity: 0.7; }
+}
+
+/* Optional subtle texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}.card {
+  background: #fff;
+  border: 1px solid #f3d6e4;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(200, 120, 150, 0.15);
+}
+.card-content h3 {
+  color: #b23a65; /* romantic deep rose */
+}
+.card-content p {
+  color: #5a3a4a;
+}
+/* Hero section with stunning romantic background */
+.hero {
+  position: relative;
+  padding: 4rem 1rem;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fbc2eb 100%);
+  overflow: hidden;
+}
+
+/* Optional animated overlay (soft glowing particles) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25) 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 40%),
+              radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15) 0%, transparent 50%);
+  animation: heroShimmer 12s infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes heroShimmer {
+  from { opacity: 0.4; }
+  to   { opacity: 0.7; }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1; /* Keep text above overlay */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
